@@ -3,26 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <title>실습1</title>
-    <style>
-        .테마{
-            background-color: w;
-        }
-    </style>
   </head>
   <body>
-    <div class="테마">
         <h1>테마 변경</h1>
         <button onclick="밝은모드()">밝은 모드</button>
         <button onclick="어두운모드()">어두운 모드</button>
         <button onclick="분홍모드()">분홍 모드</button>
         <button onclick="초록모드()">초록 모드</button>
-    </div>
     <script>
-        const 테마변경 = document.querySelector("테마");
+        const 테마변경 = document.querySelector("body");
         function 밝은모드(){
-            테마변경.style.color="balck";
-
-            테마변경.style.backgroundColor="white";
+          테마변경.style.color="black";
+          테마변경.style.backgroundColor="white";
+        }
+        function 어두운모드(){
+          테마변경.style.color="white";
+          테마변경.style.backgroundColor="black";
+        }
+        function 분홍모드(){
+          테마변경.style.color="lightpink";
+          테마변경.style.backgroundColor="lightsteelblue";
+        }
+        function 초록모드(){
+          테마변경.style.color="yellowgreen";
+          테마변경.style.backgroundColor="lightgreen";
         }
     </script>
   </body>
