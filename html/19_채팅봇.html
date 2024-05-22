@@ -4,6 +4,16 @@
     <meta charset="UTF-8" />
     <title>채팅봇</title>
     <style>
+        body{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            /*body 안에서 가운데로 정렬하기*/
+            justify-content: center;
+
+            height: 100vh;
+            margin: 0;
+        }
         #chat-container{
             width: 300px;
             height: 400px;
@@ -17,10 +27,16 @@
             */
             /* div 안에서 맨 밑으로 내리기*/
             flex-direction: column;
+            margin-top: 10px;
         }
         #chat-box{
             flex: 1;
             padding: 10px;
+            /*
+            border : 상하좌우 모두
+            border bottom : 테두리에서 아래
+            border top : 테두리에서 위
+            */
             border-bottom: 2px solid #ccc;
             /* overflow-y 세로로 내용이 넘칠 때 어떻게 보이는지 선택하는 속성
                overflow-x 좌우로 내용이 넘칠 때 어떻게 보이는지 선택하는 속성
@@ -66,11 +82,16 @@
             color: white;
             cursor: pointer;
         }
+        button:hover{
+            background-color: #0056b3;
+        }
     </style>
   </head>
   <body>
-    <h1>채팅 프로그램</h1>
-    <div id="chat-container">
+    <h1>채팅봇 프로그램</h1>
+    <button id="toggle-button" onclick="toggleChat()">채팅시작</button>
+
+    <div id="chat-container" style="display: none;">
         <div id="chat-box"></div>
         <div id="input-box">
             <input type="text" id="user-input" placeholder="메세지를 입력하세요...">
@@ -78,6 +99,21 @@
         </div>
     </div>
     <script>
+        function toggleChat(){
+            const chatContainer = document.getElementById("chat-container");
+            const toggleButton = document.getElementById("toggle-button");
+
+            if(chatContainer.style.display=="none" || chatContainer.style.display==""){
+                chatContainer.style.display = "flex";
+                toggleButton.textContent = "채팅숨기기";
+            } else {
+                chatContainer.style.display = "none";
+                toggleButton.textContent = "채팅보이기";
+            }
+        }
+        //자바스크립트는 매개변수가 함수에서 설정한 매개변수와 작성해야하는
+        //개수가 달라도 문제없이 실행됨
+        메세지보이기("안녕하세요. KH상담봇입니다. 원하는 메뉴를 입력하세요.", "bot")
         function sendMessage(){
             const inputbox = document.getElementById("user-input");
             const message = inputbox.value.trim(); //trim 공백 제거

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>채팅 프로그램</title>
+  </head>
+  <body>
+    <h1>챗봇상담하기</h1>
+    <button id="토글버튼" onclick="숨기기()">채팅시작</button>
+    <div id="챗컨테이너">
+        <div id="챗박스"></div>
+        <div id="숨기기박스">
+            
+        </div>
+        <div id="입력박스">
+            <input type="text" id="사용자채팅" placeholder="문의사항 입력">
+            <button onclick="보내기()">보내기</button>
+        </div>
+    </div>
+    <script>
+        
+        function 보내기(){
+            const 입력박스 = document.getElementById("사용자채팅");
+            const 메세지 = 입력박스.value.trim();
+            if(메세지 == "")return;
+
+            메세지보이기(메세지,"사용자");
+            입력박스.value = "";
+
+            setTimeout(() => {
+                메세지보이기("문의사항을 말씀해주세요.","봇");
+            },1000);
+        }
+        function 메세지보기(메세지,센더){
+            const 채팅박스 = document.getElementById("챗박스");
+            const 메세지생성 = document.createElement("div");
+
+            메세지생성.classList.add("메세지",센더 + "-메세지");
+            메세지생성.textContent = 메세지;
+            채팅박스.appendChild(메세지생성);
+        }
+    </script>
+  </body>
+</html>
