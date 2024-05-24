@@ -4,19 +4,38 @@
     <meta charset="UTF-8" />
     <title>핸드폰 기종 검색하기</title>
     <script type="text/javascript"src="http://code.jquery.com/jquery-3.7.1.js"></script>
+    <style>
+        #검색결과{
+            display: none;
+        }
+        
+    </style>
     <script>
         $(document).ready(function(){
             $("#검색창").keyup(function(){
-                const 검색창 = (this).val();
+                const 검색창 = $(this).val();
+                var 검색결과확인 = false;
                 $("#핸드폰리스트 li").each(function(){
                     var 텍스트 = $(this).text();
-                    if(텍스트.indexOf(검색창)){
-                        $(this).hide
+                    console.log("***************");
+                    console.log(텍스트);
+
+                    if(텍스트.indexOf(검색창) === -1){
+                        $(this).hide();
+                    } else {
+                        $(this).show();
+                        검색결과확인 = true;
                     }
-                })
-            })
-        })
+                });
+                if(검색결과확인){
+                    $("#검색결과").hide();
+                } else {
+                    $("#검색결과").show();
+                }
+            });
+        });
     </script>
+    
   </head>
   <body>
     <div class="컨테이너">
@@ -29,6 +48,7 @@
             <li>Xiaomi Mi 11</li>
             <li>LG Velvet</li>
         </ul>
+        <p id="검색결과">검색결과가 없습니다.</p>
     </div>
   </body>
 </html>
